@@ -14,6 +14,23 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
+
+    private void readAddress(String address){
+      Scanner addressSplitter = new Scanner(address).useDelimiter(", ");
+      this.block = new Block(addressSplitter.next());
+      this.street = new Street(addressSplitter.next());
+      this.unit = new Unit(addressSplitter.next());
+      this.postalCode = new PostalCode(addressSplitter.next());
+    }
+
+    public String retrieveAddress(){
+      return this.block.getBlock() + ", " + this.street.getStreet() + ", " + this.unit.getUnit() + ", " + this.postalCode.getPostalCode(); 
+
+    }
 
     /**
      * Validates given address.
@@ -22,9 +39,12 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
+
+
         if (!isValidAddress(address)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+        readAddress(address);
         this.value = address;
     }
 
