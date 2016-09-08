@@ -97,7 +97,7 @@ public class Person implements ReadOnlyPerson {
         for (Printable detail: details){
             numberOfDetails--;
             printDetails.append(detail.getPrintableString());
-            if (length == 0 ){
+            if (numberOfDetails == 0 ){
               printDetails.append(".");
             }else{
               printDetails.append(", ");
