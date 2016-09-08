@@ -90,4 +90,22 @@ public class Person implements ReadOnlyPerson {
         return getAsTextShowAll();
     }
 
+    public String getPrintableString(Printable... details){
+        StringBuilder printDetails = new StringBuilder();
+        int numberOfDetails = details.length;
+
+        for (Printable detail: details){
+            numberOfDetails--;
+            printDetails.append(detail.getPrintableString());
+            if (length == 0 ){
+              printDetails.append(".");
+            }else{
+              printDetails.append(", ");
+            }
+
+        }
+        return printDetails.toString();
+
+    }
+
 }
